@@ -8,7 +8,7 @@ const fs = require('fs');
 const { convertCSVToObjectSync, sleep, getRandomFloat, saveLog } = require('./utils');
 const { count } = require('console');
 
-const CONFIG = JSON.parse(fs.readFileSync('./config.json'))
+let CONFIG = JSON.parse(fs.readFileSync('./config.json'));
 let RPC;
 if (CONFIG.baseconfig.test){
     console.log('test')
@@ -35,6 +35,7 @@ async function main() {
     
     console.log('开始循环...')
     for(wt of walletData){
+        CONFIG = JSON.parse(fs.readFileSync('./config.json'));
 
         // 循环获取GAS
         while (true) {
